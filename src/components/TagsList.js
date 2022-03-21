@@ -15,7 +15,7 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
     <div class="tagsList" style={{ display: show }}>
       <lu>
         {tagsList.map((val, key) => (
-          <Link to={`/tags/${val}`}>
+          <Link to={`/tags/${val}`} style={{ textDecoration: "none" }}>
             <li
               id={window.location.pathname === `/${val}` ? "active" : ""}
               key={key}

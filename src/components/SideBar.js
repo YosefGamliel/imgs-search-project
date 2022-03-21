@@ -14,7 +14,7 @@ function SideBar({ tagsList, handleAddTag, handleChangeList }) {
     <div className="SideBar">
       <h4>Categories:</h4>
       <lu className="SideBarList">
-        <Link to="/">
+        <Link to="/" style={{ textDecoration: "none" }}>
           <li
             key="0"
             className="row"
@@ -29,7 +29,7 @@ function SideBar({ tagsList, handleAddTag, handleChangeList }) {
             <div id="title">Home</div>
           </li>
         </Link>
-        <Link to="/favorites">
+        <Link to="/favorites" style={{ textDecoration: "none" }}>
           <li
             key="1"
             className="row"

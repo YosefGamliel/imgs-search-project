@@ -1,24 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import TagIcon from "@mui/icons-material/Tag";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddTag from "./AddTag";
 import TagsList from "./TagsList";
 function SideBar({ tagsList, handleAddTag, handleChangeList }) {
+  const { pathname } = useLocation();
+  const splitLocation = pathname.split("/");
+  console.log(splitLocation[splitLocation.length - 1]);
   const [showTags, setShowTags] = useState(
-    window.location.pathname !== "/" &&
-      window.location.pathname !== "/favorites"
+    splitLocation[splitLocation.length - 1] !== "" &&
+      splitLocation[splitLocation.length - 1] !== "favorites"
   );
   return (
     <div className="SideBar">
       <h4>Categories:</h4>
-      <lu className="SideBarList">
+      <ul className="SideBarList" style={{ marginLeft: "-40px" }}>
         <Link to="/" style={{ textDecoration: "none" }}>
           <li
             key="0"
             className="row"
-            id={window.location.pathname === "/" ? "active" : ""}
+            id={splitLocation[splitLocation.length - 1] === "" ? "active" : ""}
             onClick={() => {
               handleChangeList([]);
             }}
@@ -33,7 +36,11 @@ function SideBar({ tagsList, handleAddTag, handleChangeList }) {
           <li
             key="1"
             className="row"
-            id={window.location.pathname === "/favorites" ? "active" : ""}
+            id={
+              splitLocation[splitLocation.length - 1] === "favorites"
+                ? "active"
+                : ""
+            }
             onClick={() => {
               handleChangeList([]);
             }}
@@ -64,7 +71,7 @@ function SideBar({ tagsList, handleAddTag, handleChangeList }) {
           handleChangeList={handleChangeList}
         />
         <AddTag key="4" tagsList={tagsList} handleAddTag={handleAddTag} />
-      </lu>
+      </ul>
     </div>
   );
 }

@@ -118,14 +118,3 @@
   flex-wrap: wrap;
   align-items: center;
 }
-/*
-.imgButtons {
-  display: inline-block;
-}
-.imgButtons .tagsList {
-  z-index: 1;
-}
-.imgButtons .tagsList .tags {
-  list-style-type: none;
-}
-*/

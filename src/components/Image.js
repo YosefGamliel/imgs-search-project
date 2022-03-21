@@ -7,7 +7,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import saveAs from "file-saver";
 
-function Image({ img, imagesList, handleChangeList, tagsList }) {
+function Image({ img, imagesList, handleChangeList, tagsList, flag }) {
   const favColor = img.favorite ? "blue" : "gray";
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -27,13 +27,17 @@ function Image({ img, imagesList, handleChangeList, tagsList }) {
       const tagL = JSON.parse(localStorage.getItem(currentTag));
       if (tagL.map((val) => val.link).indexOf(img.link) === -1) {
         localStorage.setItem(currentTag, JSON.stringify([...tagL, img]));
-        ev.currentTarget.stylr.color = "blue";
+        ev.currentTarget.style.color = "blue";
       } else {
         localStorage.setItem(
           currentTag,
           JSON.stringify(tagL.filter((val) => val.link !== img.link))
         );
         ev.currentTarget.style.color = "black";
+        if (flag.tag !== null) {
+          flag.tag.current = true;
+          handleChangeList([]);
+        }
       }
     }
   };
@@ -59,6 +63,7 @@ function Image({ img, imagesList, handleChangeList, tagsList }) {
         "favorites",
         JSON.stringify(list.filter((val) => val.link !== img.link))
       );
+      if (flag.favs !== null) flag.favs.current = true;
     }
     handleChangeList(
       imagesList.map((val) => {

@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
-function TagsList({ showTags, tagsList, handleAddTag }) {
+function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
   const show = showTags ? "block" : "none";
   const deleteTag = (ev, tag) => {
     ev.stopPropagation();
@@ -14,27 +15,29 @@ function TagsList({ showTags, tagsList, handleAddTag }) {
     <div class="tagsList" style={{ display: show }}>
       <lu>
         {tagsList.map((val, key) => (
-          <li
-            id={window.location.pathname === `/${val}` ? "active" : ""}
-            key={key}
-            className="tags"
-            onClick={(ev) => {
-              window.location.pathname = `/${val}`;
-            }}
-          >
-            <div>
-              {val}
-              <IconButton
-                title="delete tag"
-                sx={{ color: "white" }}
-                onClick={(ev) => {
-                  deleteTag(ev, val);
-                }}
-              >
-                <DeleteForeverOutlinedIcon />
-              </IconButton>
-            </div>
-          </li>
+          <Link to={`/tags/${val}`}>
+            <li
+              id={window.location.pathname === `/${val}` ? "active" : ""}
+              key={key}
+              className="tags"
+              onClick={() => {
+                handleChangeList([]);
+              }}
+            >
+              <div>
+                {val}
+                <IconButton
+                  title="delete tag"
+                  sx={{ color: "white" }}
+                  onClick={(ev) => {
+                    deleteTag(ev, val);
+                  }}
+                >
+                  <DeleteForeverOutlinedIcon />
+                </IconButton>
+              </div>
+            </li>
+          </Link>
         ))}
       </lu>
     </div>

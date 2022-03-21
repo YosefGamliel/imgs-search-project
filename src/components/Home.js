@@ -52,6 +52,7 @@ function Home({ imagesList, handleChangeList, tagsList }) {
         imagesList={imagesList}
         handleChangeList={handleChangeList}
         tagsList={tagsList}
+        flag={{ favs: null, tag: null }}
       />
       {imagesList.length > 0 && imagesList.length < 100 ? (
         <div className="loadBtn">

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "./Image";
-function ImagesList({ imagesList, handleChangeList, tagsList }) {
+function ImagesList({ imagesList, handleChangeList, tagsList, flag }) {
   return (
     <div className="divList">
       {imagesList.map((img) => (
@@ -9,6 +9,7 @@ function ImagesList({ imagesList, handleChangeList, tagsList }) {
           imagesList={imagesList}
           handleChangeList={handleChangeList}
           tagsList={tagsList}
+          flag={flag}
         />
       ))}
     </div>

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ImagesList from "./ImagesList";
 function Tags({ tag, imagesList, handleChangeList, tagsList }) {
+  const flag = useRef(true);
   useEffect(() => {
-    if (localStorage.getItem(tag) !== null) {
+    if (flag.current && localStorage.getItem(tag) !== null) {
       const favslinks =
         localStorage.getItem("favorites") == null
           ? []
@@ -17,6 +18,7 @@ function Tags({ tag, imagesList, handleChangeList, tagsList }) {
         })
       );
     }
+    flag.current = false;
   });
   return (
     <div className="layout">
@@ -27,6 +29,7 @@ function Tags({ tag, imagesList, handleChangeList, tagsList }) {
         imagesList={imagesList}
         handleChangeList={handleChangeList}
         tagsList={tagsList}
+        flag={{ favs: null, tag: flag }}
       />
     </div>
   );

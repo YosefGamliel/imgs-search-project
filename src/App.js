@@ -1,24 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState, useRef } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SideBar from "./components/SideBar";
+import Home from "./components/Home";
+import Favorites from "./components/Favorites";
+import Tags from "./components/Tags";
 
 function App() {
+  const [tagsList, setTagsList] = useState([]);
+  const first = useRef(true);
+  const handleAddTag = (val) => {
+    setTagsList(val);
+  };
+  const [imagesList, setImagesList] = useState([]);
+  const handleChangeList = (val) => {
+    setImagesList(val);
+  };
+  useEffect(() => {
+    if (first.current && localStorage.getItem("tags") !== null) {
+      setTagsList(JSON.parse(localStorage.getItem("tags")));
+    }
+    if (!first.current) {
+      localStorage.setItem("tags", JSON.stringify(tagsList));
+    }
+    first.current = false;
+  }, [tagsList]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <SideBar tagsList={tagsList} handleAddTag={handleAddTag} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                imagesList={imagesList}
+                handleChangeList={handleChangeList}
+                tagsList={tagsList}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <Favorites
+                imagesList={imagesList}
+                handleChangeList={handleChangeList}
+                tagsList={tagsList}
+              />
+            }
+          />
+          <Route path="/tags/*">
+            {tagsList.map((val) => (
+              <Route
+                path={`${val}`}
+                element={
+                  <Tags
+                    tag={val}
+                    imagesList={imagesList}
+                    handleChangeList={handleChangeList}
+                    tagsList={tagsList}
+                  />
+                }
+              />
+            ))}
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -6,8 +6,8 @@ import AddTag from "./AddTag";
 import TagsList from "./TagsList";
 function SideBar({ tagsList, handleAddTag }) {
   const [showTags, setShowTags] = useState(
-    window.location.pathname !== "/imgs-search-project" &&
-      window.location.pathname !== "/imgs-search-project/favorites"
+    window.location.pathname !== "/" &&
+      window.location.pathname !== "/favorites"
   );
   return (
     <div className="SideBar">
@@ -16,11 +16,9 @@ function SideBar({ tagsList, handleAddTag }) {
         <li
           key="0"
           className="row"
-          id={
-            window.location.pathname === "/imgs-search-project" ? "active" : ""
-          }
+          id={window.location.pathname === "/" ? "active" : ""}
           onClick={() => {
-            window.location.pathname = "/imgs-search-project";
+            window.location.pathname = "/";
           }}
         >
           <div id="icon">
@@ -31,13 +29,9 @@ function SideBar({ tagsList, handleAddTag }) {
         <li
           key="1"
           className="row"
-          id={
-            window.location.pathname === "/imgs-search-project/favorites"
-              ? "active"
-              : ""
-          }
+          id={window.location.pathname === "/favorites" ? "active" : ""}
           onClick={() => {
-            window.location.pathname = "/imgs-search-project/favorites";
+            window.location.pathname = "/favorites";
           }}
         >
           <div id="icon">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import Home from "./components/Home";
 import Favorites from "./components/Favorites";
@@ -26,7 +26,7 @@ function App() {
     first.current = false;
   }, [tagsList]);
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         <SideBar
           tagsList={tagsList}
@@ -71,7 +71,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

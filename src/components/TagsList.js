@@ -6,8 +6,8 @@ function TagsList({ showTags, tagsList, handleAddTag }) {
   const deleteTag = (ev, tag) => {
     ev.stopPropagation();
     handleAddTag(tagsList.filter((val) => val !== tag));
-    if (window.location.pathname === `/tags/${tag}`)
-      window.location.pathname = "/";
+    if (window.location.pathname === `/imgs-search-project/tags/${tag}`)
+      window.location.pathname = "/imgs-search-project";
     if (localStorage.getItem(tag) !== null) localStorage.removeItem(tag);
   };
   return (
@@ -15,11 +15,15 @@ function TagsList({ showTags, tagsList, handleAddTag }) {
       <lu>
         {tagsList.map((val, key) => (
           <li
-            id={window.location.pathname === `/tags/${val}` ? "active" : ""}
+            id={
+              window.location.pathname === `/imgs-search-project/tags/${val}`
+                ? "active"
+                : ""
+            }
             key={key}
             className="tags"
             onClick={(ev) => {
-              window.location.pathname = `/tags/${val}`;
+              window.location.pathname = `/imgs-search-project/tags/${val}`;
             }}
           >
             <div>

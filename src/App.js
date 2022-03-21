@@ -31,7 +31,7 @@ function App() {
         <SideBar tagsList={tagsList} handleAddTag={handleAddTag} />
         <Routes>
           <Route
-            path="/"
+            path="/imgs-search-project"
             element={
               <Home
                 imagesList={imagesList}
@@ -41,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/favorites"
+            path="/imgs-search-project/favorites"
             element={
               <Favorites
                 imagesList={imagesList}
@@ -50,7 +50,7 @@ function App() {
               />
             }
           />
-          <Route path="/tags/*">
+          <Route path="/imgs-search-project/tags/*">
             {tagsList.map((val) => (
               <Route
                 path={`${val}`}

@@ -9,9 +9,9 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
   const deleteTag = (ev, tag) => {
     ev.stopPropagation();
     handleAddTag(tagsList.filter((val) => val !== tag));
-    if (splitLocation[splitLocation.length - 1] === `${tag}`)
-      window.location.pathname = "/";
     if (localStorage.getItem(tag) !== null) localStorage.removeItem(tag);
+    if (splitLocation[splitLocation.length - 1] === `${tag}`)
+      handleChangeList([]);
   };
   return (
     <div class="tagsList" style={{ display: show }}>
@@ -32,15 +32,23 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
             >
               <div>
                 {val}
-                <IconButton
-                  title="delete tag"
-                  sx={{ color: "white" }}
-                  onClick={(ev) => {
-                    deleteTag(ev, val);
-                  }}
+                <Link
+                  to={
+                    splitLocation[splitLocation.length - 1] === `${val}`
+                      ? "/"
+                      : pathname
+                  }
                 >
-                  <DeleteForeverOutlinedIcon />
-                </IconButton>
+                  <IconButton
+                    title="delete tag"
+                    sx={{ color: "white" }}
+                    onClick={(ev) => {
+                      deleteTag(ev, val);
+                    }}
+                  >
+                    <DeleteForeverOutlinedIcon />
+                  </IconButton>
+                </Link>
               </div>
             </li>
           </Link>

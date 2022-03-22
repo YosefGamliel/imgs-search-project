@@ -8,7 +8,6 @@ import TagsList from "./TagsList";
 function SideBar({ tagsList, handleAddTag, handleChangeList }) {
   const { pathname } = useLocation();
   const splitLocation = pathname.split("/");
-  console.log(splitLocation[splitLocation.length - 1]);
   const [showTags, setShowTags] = useState(
     splitLocation[splitLocation.length - 1] !== "" &&
       splitLocation[splitLocation.length - 1] !== "favorites"

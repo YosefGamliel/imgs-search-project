@@ -6,7 +6,6 @@ function ImagesList({ imagesList, handleChangeList, tagsList, flag }) {
       {imagesList.map((img) => (
         <Image
           img={img}
-          imagesList={imagesList}
           handleChangeList={handleChangeList}
           tagsList={tagsList}
           flag={flag}

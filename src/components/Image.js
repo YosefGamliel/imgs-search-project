@@ -5,9 +5,8 @@ import DownloadIcon from "@mui/icons-material/Download";
 import TagIcon from "@mui/icons-material/Tag";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import saveAs from "file-saver";
 
-function Image({ img, imagesList, handleChangeList, tagsList, flag }) {
+function Image({ img, handleChangeList, tagsList, flag }) {
   const favColor = img.favorite ? "blue" : "gray";
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

@@ -3,7 +3,11 @@ import ImagesList from "./ImagesList";
 function Tags({ tag, imagesList, handleChangeList, tagsList }) {
   const flag = useRef(true);
   useEffect(() => {
-    if (flag.current && localStorage.getItem(tag) !== null) {
+    if (
+      imagesList.length === 0 &&
+      localStorage.getItem(tag) !== null &&
+      JSON.parse(localStorage.getItem(tag)).length !== 0
+    ) {
       const favslinks =
         localStorage.getItem("favorites") == null
           ? []
@@ -18,7 +22,6 @@ function Tags({ tag, imagesList, handleChangeList, tagsList }) {
         })
       );
     }
-    flag.current = false;
   });
   return (
     <div className="layout">

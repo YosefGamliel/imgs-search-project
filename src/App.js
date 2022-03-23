@@ -57,7 +57,7 @@ function App() {
           <Route path="/tags/*">
             {tagsList.map((val) => (
               <Route
-                path={`${val}`}
+                path={`${encodeURIComponent(val)}`}
                 element={
                   <Tags
                     tag={val}

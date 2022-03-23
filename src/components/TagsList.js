@@ -20,7 +20,8 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
           <Link to={`/tags/${val}`} style={{ textDecoration: "none" }}>
             <li
               id={
-                splitLocation[splitLocation.length - 1] === `${val}`
+                splitLocation[splitLocation.length - 1] ===
+                `${encodeURIComponent(val)}`
                   ? "active"
                   : ""
               }
@@ -34,7 +35,8 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
                 {val}
                 <Link
                   to={
-                    splitLocation[splitLocation.length - 1] === `${val}`
+                    splitLocation[splitLocation.length - 1] ===
+                    `${encodeURIComponent(val)}`
                       ? "/"
                       : pathname
                   }

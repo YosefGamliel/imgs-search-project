@@ -8,10 +8,7 @@ import TagsList from "./TagsList";
 function SideBar({ tagsList, handleAddTag, handleChangeList }) {
   const { pathname } = useLocation();
   const splitLocation = pathname.split("/");
-  const [showTags, setShowTags] = useState(
-    splitLocation[splitLocation.length - 1] !== "" &&
-      splitLocation[splitLocation.length - 1] !== "favorites"
-  );
+  const [showTags, setShowTags] = useState(false);
   return (
     <div className="SideBar">
       <h4>Categories:</h4>

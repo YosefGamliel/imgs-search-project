@@ -3,9 +3,12 @@ import ImagesList from "./ImagesList";
 function Favorites({ imagesList, handleChangeList, tagsList }) {
   const flag = useRef(true);
   useEffect(() => {
-    if (flag.current && localStorage.getItem("favorites") !== null)
+    if (
+      imagesList.length === 0 &&
+      localStorage.getItem("favorites") !== null &&
+      JSON.parse(localStorage.getItem("favorites")).length !== 0
+    )
       handleChangeList(JSON.parse(localStorage.getItem("favorites")));
-    flag.current = false;
   });
   return (
     <div className="layout">

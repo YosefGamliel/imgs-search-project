@@ -35,14 +35,14 @@ function Image({ img, imagesList, handleChangeList, tagsList, flag }) {
         );
         ev.currentTarget.style.color = "black";
         if (flag.tag !== null) {
-          flag.tag.current = true;
           handleChangeList([]);
         }
       }
     }
   };
-  const favorite = () => {
+  const favorite = (ev) => {
     if (!img.favorite) {
+      ev.currentTarget.style.color = "blue";
       let list = localStorage.getItem("favorites");
       if (list !== null)
         localStorage.setItem(
@@ -58,19 +58,16 @@ function Image({ img, imagesList, handleChangeList, tagsList, flag }) {
           JSON.stringify([{ link: img.link, title: img.title, favorite: true }])
         );
     } else {
+      ev.currentTarget.style.color = "gray";
       let list = JSON.parse(localStorage.getItem("favorites"));
       localStorage.setItem(
         "favorites",
         JSON.stringify(list.filter((val) => val.link !== img.link))
       );
-      if (flag.favs !== null) flag.favs.current = true;
+      if (flag.favs !== null) {
+        handleChangeList([]);
+      }
     }
-    handleChangeList(
-      imagesList.map((val) => {
-        if (val.link === img.link) val.favorite = !val.favorite;
-        return val;
-      })
-    );
   };
   return (
     <div className="imgDiv">
@@ -86,12 +83,7 @@ function Image({ img, imagesList, handleChangeList, tagsList, flag }) {
         >
           <FavoriteIcon />
         </IconButton>
-        <IconButton
-          title="download"
-          onClick={() => {
-            saveAs(img.link, `${img.title}.jpg`);
-          }}
-        >
+        <IconButton title="download">
           <DownloadIcon />
         </IconButton>
         <IconButton title="tag" onClick={handleClick}>

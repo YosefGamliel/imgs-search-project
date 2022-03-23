@@ -10,7 +10,9 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
     ev.stopPropagation();
     handleAddTag(tagsList.filter((val) => val !== tag));
     if (localStorage.getItem(tag) !== null) localStorage.removeItem(tag);
-    if (splitLocation[splitLocation.length - 1] === `${tag}`)
+    if (
+      splitLocation[splitLocation.length - 1] === `${encodeURIComponent(tag)}`
+    )
       handleChangeList([]);
   };
   return (

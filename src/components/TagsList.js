@@ -6,8 +6,7 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
   const { pathname } = useLocation();
   const splitLocation = pathname.split("/");
   const show = showTags ? "block" : "none";
-  const deleteTag = (ev, tag) => {
-    ev.stopPropagation();
+  const deleteTag = (tag) => {
     handleAddTag(tagsList.filter((val) => val !== tag));
     if (localStorage.getItem(tag) !== null) localStorage.removeItem(tag);
     if (
@@ -46,8 +45,8 @@ function TagsList({ showTags, tagsList, handleAddTag, handleChangeList }) {
                   <IconButton
                     title="delete tag"
                     sx={{ color: "white" }}
-                    onClick={(ev) => {
-                      deleteTag(ev, val);
+                    onClick={() => {
+                      deleteTag(val);
                     }}
                   >
                     <DeleteForeverOutlinedIcon />

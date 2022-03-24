@@ -29,7 +29,6 @@ function Home({ imagesList, handleChangeList, tagsList }) {
         : JSON.parse(localStorage.getItem("favorites")).map((val) => val.link);
     const CALL =
       localStorage.getItem("apiCall") + localStorage.getItem("nextPage");
-    console.log(CALL);
     const data = await (await fetch(CALL)).json();
     localStorage.setItem(
       "nextPage",

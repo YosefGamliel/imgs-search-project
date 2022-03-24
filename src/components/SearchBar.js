@@ -13,7 +13,6 @@ function SearchBar({ handleChangeList }) {
         : JSON.parse(localStorage.getItem("favorites")).map((val) => val.link);
     const API_CALL = `https://customsearch.googleapis.com/customsearch/v1?cx=${CX}&safe=active&searchType=image&key=${API_KEY}&q=${searchInput}`;
     const data = await (await fetch(API_CALL)).json();
-    console.log(data);
     localStorage.setItem("apiCall", API_CALL);
     localStorage.setItem(
       "nextPage",
